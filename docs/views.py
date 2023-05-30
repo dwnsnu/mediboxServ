@@ -9,4 +9,10 @@ from rest_framework import status
 class Index(APIView):
     def get(self, request, format=None):
         print('hi index in docs app')
-        return Response(data='hello world!', status=status.HTTP_200_OK)
+        return Response(data='hello world get!', status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        # tmp = request['hello']
+        # print(request.data['image']['base64'])
+        print("data:image/jpg;base64,"+request.data['image']['base64'])
+        return Response(data='hello world post!', status=status.HTTP_200_OK)
