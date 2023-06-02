@@ -13,7 +13,7 @@ class Index(APIView):
 
     def post(self, request, format=None):
         # print("data:image/jpg;base64,"+request.data['image']['base64'])
-        image_binary = base64.decodebytes(request.data['image']['base64'])
+        image_binary = base64.b64decode(request.data['image']['base64'])
         with open('img.jpg', 'w') as f:
             f.write(image_binary)
         return Response(data='hello world post!', status=status.HTTP_200_OK)
