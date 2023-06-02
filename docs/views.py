@@ -7,7 +7,7 @@ from rest_framework import status
 
 import base64
 import os
-
+from datetime import datetime
 
 class Index(APIView):
     def get(self, request, format=None):
@@ -22,6 +22,9 @@ class Index(APIView):
         isExist = os.path.exists(path)
         if not isExist:
             os.makedirs(path)
-        with open('docs/media/img.jpg', 'wb') as f:
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+        str_current_datetime = str(current_datetime)
+        file_name = str_current_datetime + ".jpg"
+        with open('docs/media/' + file_name, 'wb') as f:
             f.write(decoded_data)
         return Response(data='hello world post!', status=status.HTTP_200_OK)
